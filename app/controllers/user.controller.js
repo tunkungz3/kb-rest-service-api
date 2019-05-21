@@ -1,5 +1,6 @@
 var User = require('mongoose').model('User');
 const jwt = require("jwt-simple");
+
 var config = require('../../config/config');
 
 var createUser = (req, res, next)=>{
@@ -42,6 +43,7 @@ var userLogin = (req, res, next)=>{
     User.find({})
         .where('username').equals(req.body.username)
         .where('password').equals(req.body.password)
+        .select('username')
         .exec((err,user) =>{
             if(err){
                 return next(err);
@@ -51,13 +53,11 @@ var userLogin = (req, res, next)=>{
                     responseStatus:200,
                     responseMessage:"SUCCESS",
                 };
-                console.log(user.length);
                 if(user.length == 0){
-                    console.log("null");
                     response.responseMessage = "username or password invalid." ;
-                    response.responseStatus = 403;
+                    response.responseStatus = 401;
 
-                    res.status(403);
+                    res.status(401);
                     res.send(response);
                 }else{
                     const payload = {
@@ -72,6 +72,27 @@ var userLogin = (req, res, next)=>{
             }
         });
 };
+
+var getUserInfo = (req, res, next)=>{
+    console.log("get User Info");
+    User.find({})
+    .where('username').equals(req.params.username)
+    .select('username firstname lastname email')
+    .exec((err, user)=>{
+        if(err){
+            return next(err);
+        }else{
+            let response = {
+                responseStatus:200,
+                responseMessage:"SUCCESS",
+                data:user,
+            };
+            res.json(response);
+        }
+    });
+       
+}
 exports.create = createUser;
+exports.findUser = getUserInfo;
 exports.list = userList;
 exports.login = userLogin;
