@@ -1,3 +1,4 @@
 exports.render = (req, res) =>{
-    res.send('Hello World!');
+    console.log(req);
+    res.send(res.send("token:",req.token));
 };
