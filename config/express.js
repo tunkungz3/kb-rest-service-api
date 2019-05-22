@@ -17,6 +17,7 @@ module.exports = ()=>{
  
     require('../app/routes/index.routes')(app);
     require('../app/routes/user.routes')(app);
+    require('../app/routes/course.routes')(app);
 
     return app;
 }
