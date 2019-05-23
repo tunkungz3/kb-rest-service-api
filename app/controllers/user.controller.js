@@ -30,6 +30,7 @@ var createUser = (req, res, next)=>{
                 responseStatus:200,
                 responseMessage:"User created."
             };
+            res.setHeader("Content-Type", "application/json");
             res.json(response);
         }
     });
@@ -46,6 +47,7 @@ var userList = (req, res, next)=>{
                 responseMessage:"SUCCESS",
                 data:users,
             };
+            res.setHeader("Content-Type", "application/json");
             res.json(response);
         }
        
@@ -71,6 +73,7 @@ var userLogin = (req, res, next)=>{
                     response.responseStatus = 401;
 
                     res.status(401);
+                    res.setHeader("Content-Type", "application/json");
                     res.send(response);
                 }else{
                     const payload = {
@@ -82,6 +85,7 @@ var userLogin = (req, res, next)=>{
                          token:jwt.encode(payload, process.env.SECRET_KEY_ENV),
                          userInfo:user
                     };
+                    res.setHeader("Content-Type", "application/json");
                      res.send(response);
                 }
             }
@@ -101,6 +105,7 @@ var getUserInfo = (req, res, next)=>{
                 responseMessage:"SUCCESS",
                 data:user,
             };
+            res.setHeader("Content-Type", "application/json");
             res.json(response);
         }
     });

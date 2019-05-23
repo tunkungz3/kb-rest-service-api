@@ -19,6 +19,7 @@ var createCourse = (req,res,next)=>{
                 responseStatus:200,
                 responseMessage:"Course created.",
             };
+            res.setHeader("Content-Type", "application/json");
             res.json(response);
         }
     });
@@ -35,6 +36,7 @@ var courseList = (req,res,next)=>{
                 responseMessage:"SUCCESS",
                 data:result,
             };
+            res.setHeader("Content-Type", "application/json");
             res.json(response);
         }
     });
