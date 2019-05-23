@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Course = mongoose.model('COURSE');
-const Tutor = mongoose.model('TUTOR');
+
 
 var createCourse = (req,res,next)=>{
     let course = new Course({
