@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "kbtutor-rest-service-api",
+    "name": "express",
     "builds": [
         { "src": "**/*.js", "use": "@now/node" }
     ]
