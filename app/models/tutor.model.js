@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var TutorSchema = new Schema({
+var TutorSchema = mongoose.Schema({
    tutorName:String,
-   tutorDetail:String,
+   details:String,
+   profile:String,
 });
 
-mongoose.model('Tutor', TutorSchema);
+mongoose.model('TUTOR', TutorSchema);
 
 module.exports = TutorSchema;
