@@ -4,7 +4,7 @@ module.exports = (app)=>{
 
     app.post('/login', user.login);
     // app.post('/logout', user.logout);
-    app.post('/getUserInfo/:username',requireJWTAuth,user.findUser);
+    app.post('/getUserInfo',requireJWTAuth,user.findUser);
     
     app.route('/user')
         .post(user.create)

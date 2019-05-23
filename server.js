@@ -1,12 +1,15 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var mongoose = require('./config/mongoose');
 var express = require('./config/express');
+require('dotenv');
 
 var db = mongoose(); // return mongoose.connect(config.mongoUri);
-
 var app = express();
-app.listen(3000);
+
+
+
+app.listen(process.env.PORT || 3000,()=>{
+    console.log(`Start server at port ${process.env.PORT}.`);
+});
 
 module.exports = app;
 
-console.log('Start server at port 3000.');

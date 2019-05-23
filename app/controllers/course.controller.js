@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
-var Course = mongoose.model('Course');
-var config = require('../../config/config');
+const Course = mongoose.model('COURSE');
+const Tutor = mongoose.model('TUTOR');
 
 var createCourse = (req,res,next)=>{
-    let course = new Course(req.body);
+    let course = new Course({
+        _id: new mongoose.Types.ObjectId(),
+        courseName: req.body.courseName,
+        recommendedVideos: req.body.recommendedVideos,
+        lessons: req.body.lessons,
+        tutor: req.body.tutor
+    });
     course.save((err)=>{
         if(err){
             return next(err);
@@ -12,7 +18,6 @@ var createCourse = (req,res,next)=>{
             response = {
                 responseStatus:200,
                 responseMessage:"Course created.",
-                data:course,
             };
             res.json(response);
         }

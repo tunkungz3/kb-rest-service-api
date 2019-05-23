@@ -1,12 +1,11 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
 var VideoContentSchema = require('../models/videoContent.model');
-var LessonSchema = new Schema({
+var LessonSchema = mongoose.Schema({
     lessonName:String,
     videoContent:[{type:VideoContentSchema}]
 });
 
-mongoose.model('Lesson', LessonSchema);
+mongoose.model('LESSON', LessonSchema);
 
 module.exports = LessonSchema;

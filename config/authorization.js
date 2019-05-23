@@ -1,5 +1,5 @@
-const config = require('../config/config');
-var User = require('mongoose').model('User');
+require('dotenv/config');
+var User = require('mongoose').model('USER');
 
 //ใช้ในการ decode jwt ออกมา
 const ExtractJwt = require("passport-jwt").ExtractJwt;
@@ -9,16 +9,18 @@ const passport = require("passport");
 
 const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader("authorization"),
-    secretOrKey: config.sessionSecret,//SECRETเดียวกับตอนencodeในกรณีนี้คือ MY_SECRET_KEY
+    secretOrKey: process.env.SECRET_KEY_ENV,//SECRETเดียวกับตอนencode
  }
 
 const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
     User.find({})
         .where('username').equals(payload.sub)
-        .select('username')
         .exec((err,user)=>{
-            if(user.length != 0)done(null, true);
-            else done(null, false);
+            if(user.length != 0){
+                done(null, true);
+            }else {
+                done(null, false);
+            }
         });
     });
     
