@@ -1,7 +1,14 @@
 {
-    "version": 2,
-    "name": "express",
     "builds": [
-        { "src": "**/*.js", "use": "@now/node" }
+      {
+        "src": "server.js",
+        "use": "@now/node",
+        "config": {
+          "includeFiles": [
+            "templates/**",
+            "views/**"
+          ]
+        }
+      }
     ]
-}
+  }
