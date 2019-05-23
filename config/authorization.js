@@ -9,7 +9,7 @@ const passport = require("passport");
 
 const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader("authorization"),
-    secretOrKey: "process.env.SECRET_KEY_ENV",//SECRETเดียวกับตอนencode
+    secretOrKey: "SECRET_KEY_ENV",//SECRETเดียวกับตอนencode
  }
 
 const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
