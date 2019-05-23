@@ -3,5 +3,12 @@
     "name": "express",
     "builds": [
         { "src": "server.js", "use": "@now/node" }
-    ]
+    ],
+    "routes": [
+        {
+          "src": "/",
+          "dest": "/index",
+          "status": 200
+        }
+      ]
 }
