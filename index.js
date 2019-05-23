@@ -1,6 +1,6 @@
 var mongoose = require('./config/mongoose');
 var express = require('./config/express');
-require('dotenv');
+require('dotenv/config');
 
 var db = mongoose(); // return mongoose.connect(config.mongoUri);
 var app = express();
